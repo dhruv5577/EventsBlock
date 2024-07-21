@@ -7,8 +7,8 @@ import { fetchEvents } from '../../Utils/http.js';
 export default function NewEventsSection() {
  
   const { data ,isPending,isError,error}=useQuery({
-    querykey:['evnets'],
-    queryFn:fetchEvents,
+    queryKey:['events',{max:2}],
+    queryFn:({signal,queryKey})=>fetchEvents({signal,...queryKey[1]}),
     staleTime:5000
   });
  
